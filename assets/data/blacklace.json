@@ -1,0 +1,59 @@
+{
+  "name": "Ludmila",
+  "role": "Gardienne du Club Ludmila",
+  "zone": "Club Ludmila",
+  "camp": "Neutre",
+  "energy": "Psychoactive / Sensorielle / Occulte",
+  "status": "ONLINE",
+  "avatar": "assets/img/ludmila-redqueen.jpg",
+  "description": "Ludmila veille sur les profondeurs rouges de Blacklace Island. Son club accueille les voyageurs perdus, les rêveurs et les consommateurs de NFTs psychoactifs capables d’altérer la perception du réel. Derrière les lumières rubis et les fumées violettes, elle observe silencieusement les réactions de chacun.",
+  "quote": "Certaines perceptions ne ressortent jamais intactes.",
+  "ambience": {
+    "music": "dark synthwave / hypnotic techno / occult lounge",
+    "lights": [
+      "#ff003c",
+      "#7a00ff",
+      "#ff4d6d"
+    ],
+    "effects": [
+      "fumée holographique",
+      "cartes NFT flottantes",
+      "glitchs sensoriels",
+      "symboles SATOR lumineux"
+    ]
+  },
+  "features": [
+    {
+      "title": "NFT Psychoactifs",
+      "description": "Des artefacts numériques qui modifient la perception visuelle et sonore du visiteur."
+    },
+    {
+      "title": "Salon Rouge",
+      "description": "Zone lounge secrète où les conversations deviennent étrangement prophétiques."
+    },
+    {
+      "title": "Vision Altérée",
+      "description": "Mode expérimental influençant les couleurs, les voix et les réactions du site."
+    }
+  ],
+  "links": {
+    "clubAccess": "#club-ludmila",
+    "blacklaceDice": "https://blacklace-dice--prohibitedvlc.replit.app",
+    "youtube": "https://www.youtube.com/@prohibitedNetwork",
+    "x": "https://x.com/benoit_lubert"
+  },
+  "liveMessages": [
+    "Les perceptions ne ressortent jamais intactes.",
+    "Le signal rouge semble respirer.",
+    "Un NFT vient de changer de forme.",
+    "Ludmila observe silencieusement les visiteurs.",
+    "Le club réagit aux émotions détectées."
+  ],
+  "visualStyle": {
+    "primary": "#ff003c",
+    "secondary": "#7a00ff",
+    "accent": "#ff4d6d",
+    "background": "#120014",
+    "font": "Inter"
+  }
+}
