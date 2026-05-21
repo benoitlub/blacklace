@@ -8,25 +8,42 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="blacklace-pages-fix.css" />
+  <link rel="stylesheet" href="blacklace-public-fix.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="phase-signal map-body">
-  <div class="bl-bg-grid"></div><div class="bl-bg-glow"></div><div class="noise"></div><div class="scanlines"></div>
+  <div class="bl-bg-grid"></div>
+  <div class="bl-bg-glow"></div>
+  <div class="bl-particles" id="blParticles"></div>
+  <div class="noise"></div>
+  <div class="scanlines"></div>
+
   <main class="map-page">
-    <header class="topbar map-topbar">
-      <a class="brand" href="index.html"><span class="brand-eye">◉</span><span>BLACKLACE</span></a>
-      <div class="top-actions"><a class="aloisia-button" href="aloisia.html">ALOISIA</a><a class="map-button compact" href="index.html">LIVE ACCESS</a></div>
+    <header class="map-topbar">
+      <a class="bl-brand" href="index.html"><span class="bl-brand-eye">◉</span><span>BLACKLACE</span></a>
+      <div class="bl-nav">
+        <a class="bl-pill bl-pill-active" href="aloisia.html">ALOISIA</a>
+        <a class="bl-pill" href="index.html">LIVE ACCESS</a>
+      </div>
     </header>
-    <section class="holo-map-stage tilt-card">
-      <div class="map-title-block"><p class="section-kicker">HOLOGRAPHIC MAP</p><h1>Blacklace Island</h1><p>Carte locale branchée sur <code>assets/img/island-map.png</code>. Les points deviendront les accès vivants de l’île.</p></div>
-      <div class="map-core local-map">
+
+    <section class="holo-map-stage">
+      <div class="map-title-block">
+        <p class="bl-section-title">HOLOGRAPHIC MAP</p>
+        <h1>Blacklace Island</h1>
+        <p>Carte locale branchée sur <code>assets/img/island-map.png</code>. Les points deviendront les accès vivants de l’île.</p>
+      </div>
+
+      <div class="map-core">
         <img src="assets/img/island-map.png" alt="Carte de Blacklace Island" />
-        <button class="hotspot rotas" title="Rotas Village"><span>Rotas</span></button>
-        <button class="hotspot feuch" title="Fournaise de Feuch"><span>Feuch</span></button>
-        <button class="hotspot port" title="Porsa Rotas"><span>Port</span></button>
-        <button class="hotspot aloisia-spot" title="Aloisia Core"><span>Aloisia</span></button>
+        <button class="hotspot rotas"><span>Rotas</span></button>
+        <button class="hotspot feuch"><span>Feuch</span></button>
+        <button class="hotspot port"><span>Port</span></button>
+        <button class="hotspot aloisia-spot"><span>Aloisia</span></button>
       </div>
     </section>
   </main>
+
+  <script src="blacklace-public-fix.js"></script>
 </body>
 </html>

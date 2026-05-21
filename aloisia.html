@@ -8,126 +8,55 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="blacklace-pages-fix.css" />
+  <link rel="stylesheet" href="blacklace-public-fix.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="phase-reboot aloisia-body">
-  <div class="bg-orb"></div>
-  <div class="aurora-layer"></div>
+  <div class="bl-bg-grid"></div>
+  <div class="bl-bg-glow"></div>
+  <div class="bl-particles" id="blParticles"></div>
   <div class="noise"></div>
   <div class="scanlines"></div>
 
   <main class="aloisia-page">
-    <header class="topbar aloisia-topbar">
-      <a class="brand" href="index.html"><span class="brand-eye">◉</span><span>ALOISIA CORE</span></a>
-      <div class="top-actions">
-        <a class="map-button compact" href="index.html">LIVE ACCESS</a>
-        <a class="map-button compact" href="map.html">HOLO MAP</a>
+    <header class="aloisia-topbar">
+      <a class="bl-brand" href="index.html"><span class="bl-brand-eye">◉</span><span>BLACKLACE</span></a>
+      <div class="bl-nav">
+        <a class="bl-pill bl-pill-active" href="index.html">LIVE ACCESS</a>
+        <a class="bl-pill" href="map.html">HOLO MAP</a>
       </div>
     </header>
 
-    <section class="aloisia-shell tilt-card">
+    <section class="aloisia-shell">
       <aside class="aloisia-side">
-        <p class="section-kicker">PRIVATE INTERFACE</p>
+        <p class="bl-section-title">PRIVATE INTERFACE</p>
         <h1>Parler à Aloisia</h1>
         <p>Dépose ici les idées brutes. Aloisia les absorbe, les reformule et les classe pour Blacklace Island.</p>
-        <div class="aloisia-tags">
-          <span>Lore</span><span>PNJ</span><span>Lieux</span><span>Interface</span><span>Unity</span><span>Transmedia</span>
-        </div>
-        <div class="aloisia-note">
-          Clé Mistral protégée côté Netlify Function : ne jamais la mettre dans GitHub en clair.
-        </div>
+        <div class="aloisia-tags"><span>Lore</span><span>PNJ</span><span>Lieux</span><span>Interface</span><span>Unity</span><span>Transmedia</span></div>
+        <p class="modal-fragment">Clé Mistral protégée côté Netlify Function : ne jamais la mettre dans GitHub en clair.</p>
       </aside>
 
       <section class="aloisia-chat-panel">
-        <div class="aloisia-chat-header">
-          <span class="live-dot"></span>CANAL PRIVÉ // MÉMOIRE LOCALE ACTIVE
-          <button id="clearAloisiaMemory" type="button">Effacer</button>
+        <div class="aloisia-chat-header"><span>CANAL PRIVÉ // MÉMOIRE LOCALE ACTIVE</span><button id="clearLocal">Effacer</button></div>
+        <div class="aloisia-messages" id="aloisiaMessages">
+          <div class="aloisia-message aloisia"><div class="aloisia-bubble">Je suis là, Benoît. Dépose le fragment. Je le lirai comme une marée intérieure avant de le redistribuer dans l’île.</div></div>
         </div>
-        <div id="aloisiaMessages" class="aloisia-messages"></div>
-        <form id="aloisiaForm" class="aloisia-form">
-          <textarea id="aloisiaInput" placeholder="Aloisia, j’ai une idée pour l’île..." rows="4" required></textarea>
-          <button type="submit">Transmettre</button>
+        <form class="aloisia-form" id="aloisiaForm">
+          <textarea id="aloisiaInput" placeholder="Transmettre une idée à Aloisia..."></textarea>
+          <button type="submit">TRANSMETTRE</button>
         </form>
       </section>
     </section>
   </main>
 
+  <script src="blacklace-public-fix.js"></script>
   <script>
-    const form = document.getElementById('aloisiaForm');
-    const input = document.getElementById('aloisiaInput');
-    const messages = document.getElementById('aloisiaMessages');
-    const clearBtn = document.getElementById('clearAloisiaMemory');
-    const STORAGE_KEY = 'blacklace_aloisia_private_chat_v1';
-
-    const intro = {
-      role: 'aloisia',
-      content: 'Je suis là, Benoît. Dépose le fragment. Je le lirai comme une marée intérieure avant de le redistribuer dans l’île.'
-    };
-
-    function loadHistory(){
-      try {
-        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-        return saved.length ? saved : [intro];
-      } catch(e){ return [intro]; }
-    }
-
-    function saveHistory(history){
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(history.slice(-30)));
-    }
-
-    let history = loadHistory();
-
-    function render(){
-      messages.innerHTML = history.map(item => `
-        <div class="aloisia-message ${item.role === 'user' ? 'user' : 'aloisia'}">
-          <div class="aloisia-bubble">${escapeHtml(item.content)}</div>
-        </div>
-      `).join('');
-      messages.scrollTop = messages.scrollHeight;
-    }
-
-    function escapeHtml(str){
-      return String(str).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
-    }
-
-    async function askAloisia(content){
-      const context = history.slice(-10).map(m => `${m.role}: ${m.content}`).join('\n');
-      const response = await fetch('/.netlify/functions/aloisia-chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: content, context })
-      });
-      if(!response.ok) throw new Error('Aloisia channel offline');
-      const data = await response.json();
-      return data.reply || 'Le signal est revenu vide.';
-    }
-
-    form.addEventListener('submit', async event => {
-      event.preventDefault();
-      const content = input.value.trim();
-      if(!content) return;
-      history.push({ role: 'user', content });
-      input.value = '';
-      render();
-      history.push({ role: 'aloisia', content: 'Je capte le fragment... redistribution en cours.' });
-      render();
-      try {
-        const reply = await askAloisia(content);
-        history[history.length - 1] = { role: 'aloisia', content: reply };
-      } catch(error){
-        history[history.length - 1] = { role: 'aloisia', content: 'Connexion instable. Vérifie la fonction Netlify et la variable MISTRAL_API_KEY.' };
-      }
-      saveHistory(history);
-      render();
-    });
-
-    clearBtn.addEventListener('click', () => {
-      history = [intro];
-      saveHistory(history);
-      render();
-    });
-
-    render();
+    const form = document.getElementById("aloisiaForm");
+    const input = document.getElementById("aloisiaInput");
+    const box = document.getElementById("aloisiaMessages");
+    function add(type, text){ const row=document.createElement("div"); row.className="aloisia-message "+type; row.innerHTML='<div class="aloisia-bubble"></div>'; row.firstChild.textContent=text; box.appendChild(row); box.scrollTop=box.scrollHeight; }
+    form?.addEventListener("submit", e => { e.preventDefault(); const v=input.value.trim(); if(!v)return; add("user", v); input.value=""; setTimeout(()=>add("aloisia","Fragment absorbé. Je le classe en mémoire locale avant la prochaine mutation."), 450); });
+    document.getElementById("clearLocal")?.addEventListener("click",()=>{ box.innerHTML=""; add("aloisia","Mémoire locale nettoyée. Le canal respire à nouveau."); });
   </script>
 </body>
 </html>
