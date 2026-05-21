@@ -4,85 +4,114 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blacklace Island — Live Access</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="blacklace-home-fix.css" />
+  <link rel="stylesheet" href="blacklace-pages-fix.css" />
+
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body class="phase-signal">
-  <div class="bg-orb"></div>
-  <div class="aurora-layer"></div>
-  <div class="signal-particles" id="signalParticles"></div>
+  <div class="bl-bg-grid"></div>
+  <div class="bl-bg-glow"></div>
   <div class="noise"></div>
   <div class="scanlines"></div>
+  <div class="signal-particles" id="signalParticles"></div>
 
-  <main class="app">
-    <header class="topbar">
-      <a class="brand" href="index.html"><span class="brand-eye">◉</span><span>BLACKLACE</span></a>
-      <div class="top-actions">
-        <a class="aloisia-button" href="aloisia.html" title="Private Aloisia Core">ALOISIA</a>
-        <button class="phase-button mode-switcher" data-phase="phase-signal">SIGNAL</button>
-        <button class="phase-button mode-switcher" data-phase="phase-feuch">FEUCH</button>
-        <button class="phase-button mode-switcher" data-phase="phase-reboot">REBOOT</button>
-        <div class="status-pill" id="phaseLabel">SIGNAL ACTIVE</div>
-      </div>
+  <main class="bl-home">
+    <header class="bl-topbar">
+      <a class="bl-brand" href="index.html">
+        <span class="bl-brand-eye">◉</span>
+        <span>BLACKLACE</span>
+      </a>
+
+      <nav class="bl-nav">
+        <a href="aloisia.html" class="bl-pill bl-pill-active">ALOISIA</a>
+        <button class="bl-pill mode-switcher" data-phase="phase-signal">SIGNAL</button>
+        <button class="bl-pill mode-switcher" data-phase="phase-feuch">FEUCH</button>
+        <button class="bl-pill mode-switcher" data-phase="phase-reboot">REBOOT</button>
+        <span class="bl-pill bl-status" id="phaseLabel">SIGNAL ACTIVE</span>
+      </nav>
     </header>
 
-    <section class="signal-network-shell">
-      <div class="signal-intro">
-        <p class="intro-kicker">BLACKLACE ISLAND // LIVE ACCESS</p>
+    <section class="bl-hero">
+      <div class="bl-hero-left">
+        <p class="bl-kicker">BLACKLACE ISLAND // LIVE ACCESS</p>
         <h1>Signal Network</h1>
-        <p class="intro-text">Une station de diffusion instable entre Natasha, Marty, Feuch et la brume. Les écrans ne montrent pas toujours la même réalité.</p>
+        <p class="bl-lead">Une station de diffusion instable entre Natasha, Marty, Feuch et la brume. Les écrans ne montrent pas toujours la même réalité.</p>
+
+        <div class="bl-signal-console">
+          <div class="bl-console-head">
+            <span>BRUME ACTIVE</span>
+            <span id="viewerCount">128 viewers</span>
+          </div>
+
+          <div class="bl-log-list" id="chatLog">
+            <div class="bl-log"><strong>SYSTEM</strong><span>Signal capté : SLOBODANE FLUX.</span></div>
+            <div class="bl-log"><strong>ALOISIA</strong><span>Bienvenue sur Blacklace. Si le signal saute, c’est normal. Enfin… presque.</span></div>
+            <div class="bl-log"><strong>MARTY</strong><span>Je confirme : la route du port a encore changé.</span></div>
+          </div>
+
+          <form class="bl-mini-form" id="blacklaceChatForm">
+            <textarea id="blacklaceChatInput" rows="1" placeholder="Écris au signal..."></textarea>
+            <button type="submit" title="Transmettre"><i data-lucide="send"></i></button>
+          </form>
+        </div>
       </div>
 
-      <div class="signal-cockpit">
-        <div class="video-panel tilt-card">
-          <div class="video-header"><span>● NATASHA LIVE ACCESS</span><span>SIGNAL ACTIVE</span></div>
-          <div class="video-shell" id="liveScreen">
-            <video id="localVideo" class="live-media" autoplay muted playsinline></video>
-            <iframe id="youtubeFrame" class="live-media hidden" src="" title="Blacklace Signal" allow="autoplay; fullscreen" allowfullscreen></iframe>
-            <div class="live-screen-glow"></div>
-            <div class="live-screen-grid"></div>
+      <aside class="bl-hero-right">
+        <div class="bl-floating-video">
+          <div class="bl-video-head">
+            <span>● NATASHA LIVE ACCESS</span>
+            <span>SIGNAL 96%</span>
+          </div>
+
+          <div class="bl-video-frame" id="liveScreen">
+            <video id="localVideo" class="live-media bl-media" autoplay muted loop playsinline></video>
+            <iframe id="youtubeFrame" class="live-media bl-media hidden" src="" title="Blacklace Signal" allow="autoplay; fullscreen" allowfullscreen></iframe>
+            <div class="bl-waiting"><i data-lucide="radio"></i><span>WAITING FOR SIGNAL</span></div>
             <div class="signal-overlay hidden" id="signalOverlay"><div>SIGNAL LOST</div></div>
-            <div class="video-hud"><span id="screenLabel">ROTAS // SIGNAL PRINCIPAL</span><span>SYNC 92%</span></div>
+            <div class="bl-video-label" id="screenLabel">ROTAS // SIGNAL PRINCIPAL</div>
           </div>
         </div>
 
-        <aside class="chat-panel holo-chat-overlay tilt-card">
-          <div class="chat-header"><span class="eye-icon">◉</span><span>ALOISIA NETWORK</span><span class="viewer-count" id="viewerCount">128 viewers</span></div>
-          <div class="chat-messages chat-scroll" id="chatLog">
-            <div class="chat-line"><span class="chat-name">SYSTEM</span>Signal capté : SLOBODANE FLUX.</div>
-            <div class="chat-line"><span class="chat-name">ALOISIA</span>Bienvenue sur Blacklace. Si le signal saute, c’est normal. Enfin… presque.</div>
-            <div class="chat-line"><span class="chat-name">MARTY</span>Je confirme : la route du port a encore changé.</div>
-          </div>
-          <div class="chat-reactions"><span>👁️</span><span>🔥</span><span>🌀</span><span>💜</span><span>🪽</span></div>
-          <form class="chat-input real-chat-input" id="blacklaceChatForm">
-            <textarea id="blacklaceChatInput" placeholder="Écris au signal..." rows="2"></textarea>
-            <button type="submit" id="sendSignalBtn" title="Envoyer au signal">↗</button>
-          </form>
-        </aside>
+        <div class="bl-side-status">
+          <span><i data-lucide="sparkles"></i> memory drift</span>
+          <span><i data-lucide="activity"></i> unstable feed</span>
+          <span><i data-lucide="orbit"></i> reboot pending</span>
+        </div>
+      </aside>
+    </section>
+
+    <section class="bl-access">
+      <p class="bl-section-title">ACCÈS DISPONIBLES</p>
+      <div class="bl-card-grid">
+        <button class="bl-node" data-zone="port"><i data-lucide="waves"></i><strong>Le Port</strong><small>Porsa Rotas</small></button>
+        <button class="bl-node" data-zone="max"><i data-lucide="martini"></i><strong>Max Liberty</strong><small>Le bar garde les lumières</small></button>
+        <button class="bl-node" data-zone="sator"><i data-lucide="triangle"></i><strong>Clairière SATOR</strong><small>Marty parle aux pierres</small></button>
+        <button class="bl-node" data-zone="ludmila"><i data-lucide="music-2"></i><strong>Club Ludmila</strong><small>Perception modifiée</small></button>
+        <button class="bl-node" data-zone="institute"><i data-lucide="flask-conical"></i><strong>Feuch Institute</strong><small>Prototypes et artefacts</small></button>
+        <button class="bl-node" data-zone="network"><i data-lucide="radio"></i><strong>Pro.Hibited Network</strong><small>BNN24 / Moscomiul Break</small></button>
       </div>
     </section>
 
-    <section class="access-panel access-panel-wide">
-      <p class="section-kicker">ACCÈS DISPONIBLES</p>
-      <div class="access-grid">
-        <button class="access-card tilt-card" data-zone="port"><span class="glyph eye-glyph">🌊</span><strong>Le Port</strong><small>Porsa Rotas</small></button>
-        <button class="access-card tilt-card" data-zone="max"><span class="glyph eye-glyph">🍸</span><strong>Max Liberty</strong><small>Le bar garde les lumières</small></button>
-        <button class="access-card tilt-card" data-zone="sator"><span class="glyph eye-glyph">△</span><strong>Clairière SATOR</strong><small>Marty parle aux pierres</small></button>
-        <button class="access-card tilt-card" data-zone="ludmila"><span class="glyph eye-glyph">💃</span><strong>Club Ludmila</strong><small>Perception modifiée</small></button>
-        <button class="access-card tilt-card" data-zone="institute"><span class="glyph eye-glyph">🧪</span><strong>Feuch Institute</strong><small>Prototypes et artefacts</small></button>
-        <button class="access-card tilt-card" data-zone="network"><span class="glyph eye-glyph">📡</span><strong>Pro.Hibited Network</strong><small>BNN24 / Moscomiul Break</small></button>
-      </div>
+    <section class="bl-map-access">
+      <a class="bl-map-button" href="map.html"><i data-lucide="map"></i>ENTER THE HOLO MAP</a>
     </section>
 
-    <section class="map-access"><a class="map-button" href="map.html"><span class="map-button-eye">◉</span> ENTER THE HOLO MAP</a></section>
-
-    <section class="hub-section">
-      <p class="section-kicker">ARTEFACTS CONNECTÉS</p>
-      <div class="project-grid">
-        <a class="project-card tilt-card" href="https://blacklace-dice--prohibitedvlc.replit.app" target="_blank" rel="noopener"><span>🎲</span><strong>Blacklace Dice</strong><small>Missions, hasard et friction mentale.</small></a>
-        <a class="project-card tilt-card" href="https://blacklace-relax-system.replit.app" target="_blank" rel="noopener"><span>🪽</span><strong>Fée Belette Reboot</strong><small>Relaxation, apaisement et reset doux.</small></a>
-        <a class="project-card tilt-card" href="https://www.youtube.com/@prohibitedNetwork" target="_blank" rel="noopener"><span>📺</span><strong>Pro.Hibited Network</strong><small>Signaux vidéo de l’île.</small></a>
-        <a class="project-card tilt-card" href="https://www.amazon.fr/Neverland-ltd-nouvelles-aventures-Peter/dp/B0GWHDTG6N" target="_blank" rel="noopener"><span>📘</span><strong>Neverland Ltd</strong><small>Roman — ouvrir sur Amazon.</small></a>
-        <a class="project-card tilt-card" href="https://www.amazon.fr/Feulette-tachet%C3%A9e-Beno%C3%AEt-Lubert/dp/B0GYSSLZX4" target="_blank" rel="noopener"><span>🌿</span><strong>La Feulette Tachetée</strong><small>Roman — ouvrir sur Amazon.</small></a>
+    <section class="bl-access bl-artifacts">
+      <p class="bl-section-title">ARTEFACTS CONNECTÉS</p>
+      <div class="bl-card-grid">
+        <a class="bl-node" href="https://blacklace-dice--prohibitedvlc.replit.app" target="_blank" rel="noopener"><i data-lucide="dice-6"></i><strong>Blacklace Dice</strong><small>Missions, hasard et friction mentale.</small></a>
+        <a class="bl-node" href="https://blacklace-relax-system.replit.app" target="_blank" rel="noopener"><i data-lucide="feather"></i><strong>Fée Belette Reboot</strong><small>Relaxation, apaisement et reset doux.</small></a>
+        <a class="bl-node" href="https://www.youtube.com/@prohibitedNetwork" target="_blank" rel="noopener"><i data-lucide="tv"></i><strong>Pro.Hibited Network</strong><small>Signaux vidéo de l’île.</small></a>
+        <a class="bl-node" href="https://www.amazon.fr/Neverland-ltd-nouvelles-aventures-Peter/dp/B0GWHDTG6N" target="_blank" rel="noopener"><i data-lucide="book-open"></i><strong>Neverland Ltd</strong><small>Roman — ouvrir sur Amazon.</small></a>
+        <a class="bl-node" href="https://www.amazon.fr/Feulette-tachet%C3%A9e-Beno%C3%AEt-Lubert/dp/B0GYSSLZX4" target="_blank" rel="noopener"><i data-lucide="leaf"></i><strong>La Feulette Tachetée</strong><small>Roman — ouvrir sur Amazon.</small></a>
       </div>
     </section>
   </main>
@@ -91,49 +120,15 @@
     <div class="modal-backdrop" id="modalBackdrop"></div>
     <div class="modal-panel tilt-card">
       <button class="modal-close" id="modalClose" aria-label="Fermer">×</button>
-      <p class="modal-kicker" id="modalKicker"></p><h2 id="modalTitle"></h2><p class="modal-text" id="modalText"></p>
-      <div class="modal-fragment" id="modalFragment"></div><div class="modal-actions" id="modalActions"></div>
+      <p class="modal-kicker" id="modalKicker"></p>
+      <h2 id="modalTitle"></h2>
+      <p class="modal-text" id="modalText"></p>
+      <div class="modal-fragment" id="modalFragment"></div>
+      <div class="modal-actions" id="modalActions"></div>
     </div>
   </div>
 
   <script src="script.js"></script>
-  <script>
-    (function () {
-      const form = document.getElementById("blacklaceChatForm");
-      const input = document.getElementById("blacklaceChatInput");
-      const chatLog = document.getElementById("chatLog");
-      if (!form || !input || !chatLog) return;
-
-      function addChatLine(name, text) {
-        const line = document.createElement("div");
-        line.className = "chat-line";
-        const speaker = document.createElement("span");
-        speaker.className = "chat-name";
-        speaker.textContent = name;
-        line.appendChild(speaker);
-        line.appendChild(document.createTextNode(text));
-        chatLog.appendChild(line);
-        chatLog.scrollTop = chatLog.scrollHeight;
-      }
-
-      form.addEventListener("submit", function (event) {
-        event.preventDefault();
-        const value = input.value.trim();
-        if (!value) return;
-        addChatLine("BENOÎT", value);
-        input.value = "";
-        setTimeout(function () {
-          addChatLine("ALOISIA", "Signal reçu. Je l’absorbe dans la brume et je le garde pour la prochaine mutation de l’île.");
-        }, 450);
-      });
-
-      input.addEventListener("keydown", function (event) {
-        if (event.key === "Enter" && !event.shiftKey) {
-          event.preventDefault();
-          form.requestSubmit();
-        }
-      });
-    })();
-  </script>
+  <script>window.addEventListener('DOMContentLoaded',()=>{ if(window.lucide) window.lucide.createIcons(); });</script>
 </body>
 </html>
