@@ -1,132 +1,137 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blacklace Island — Live Access</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-
+  <title>Blacklace Island - Live Access</title>
   <link rel="stylesheet" href="style.css" />
-
-  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+<body>
+  <div class="bg" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
 
-<body class="phase-signal">
-  <div class="bl-bg-grid"></div>
-  <div class="bl-bg-glow"></div>
-  <div class="noise"></div>
-  <div class="scanlines"></div>
-  <div class="signal-particles" id="signalParticles"></div>
+  <main class="app" id="top">
+    <section class="live-shell" aria-labelledby="pageTitle">
+      <header class="topbar">
+        <a class="brand-lockup" href="#top" aria-label="Blacklace">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-text">
+            <strong>BLACKLACE</strong>
+            <span>LIVE ACCESS</span>
+          </span>
+        </a>
 
-  <main class="bl-home">
-    <header class="bl-topbar">
-      <a class="bl-brand" href="index.html">
-        <span class="bl-brand-eye">◉</span>
-        <span>BLACKLACE</span>
-      </a>
+        <div class="signal-strip" aria-hidden="true">
+          <span class="mini-sigil sigil-spark"></span>
+          <span class="mini-sigil sigil-eye"></span>
+          <span class="mini-sigil sigil-target"></span>
+        </div>
 
-      <nav class="bl-nav">
-        <a href="aloisia.html" class="bl-pill bl-pill-active">ALOISIA</a>
-        <button class="bl-pill mode-switcher" data-phase="phase-signal">SIGNAL</button>
-        <button class="bl-pill mode-switcher" data-phase="phase-feuch">FEUCH</button>
-        <button class="bl-pill mode-switcher" data-phase="phase-reboot">REBOOT</button>
-        <span class="bl-pill bl-status" id="phaseLabel">SIGNAL ACTIVE</span>
-      </nav>
-    </header>
+        <div class="status-dot" aria-label="Natasha est en direct">
+          <i></i>
+          LIVE
+        </div>
+      </header>
 
-    <section class="bl-hero">
-      <div class="bl-hero-left">
-        <p class="bl-kicker">BLACKLACE ISLAND // LIVE ACCESS</p>
-        <h1>Signal Network</h1>
-        <p class="bl-lead">Une station de diffusion instable entre Natasha, Marty, Feuch et la brume. Les écrans ne montrent pas toujours la même réalité.</p>
-
-        <div class="bl-signal-console">
-          <div class="bl-console-head">
-            <span>BRUME ACTIVE</span>
-            <span id="viewerCount">128 viewers</span>
+      <section class="hero" id="live">
+        <div class="stream-card">
+          <div class="stream-toolbar">
+            <span class="stream-label">NATASHA // ROTAS SIGNAL</span>
+            <span class="stream-health">Signal 97%</span>
           </div>
 
-          <div class="bl-log-list" id="chatLog">
-            <div class="bl-log"><strong>SYSTEM</strong><span>Signal capté : SLOBODANE FLUX.</span></div>
-            <div class="bl-log"><strong>ALOISIA</strong><span>Bienvenue sur Blacklace. Si le signal saute, c’est normal. Enfin… presque.</span></div>
-            <div class="bl-log"><strong>MARTY</strong><span>Je confirme : la route du port a encore changé.</span></div>
+          <video id="natashaVideo" class="natasha-video" autoplay muted playsinline>
+            <source src="./assets/videos/natasha-live.mp4" type="video/mp4" />
+          </video>
+
+          <div class="scanline" aria-hidden="true"></div>
+        </div>
+
+        <aside class="chat-card" aria-label="Chat du live">
+          <div class="chat-header">
+            <span>Island Chat</span>
+            <small id="viewerCount">128 viewers</small>
           </div>
 
-          <form class="bl-mini-form" id="blacklaceChatForm">
-            <textarea id="blacklaceChatInput" rows="1" placeholder="Écris au signal..."></textarea>
-            <button type="submit" title="Transmettre"><i data-lucide="send"></i></button>
+          <div class="chat-window" id="chatWindow" aria-live="polite"></div>
+
+          <form class="chat-form" id="chatForm">
+            <label class="sr-only" for="chatInput">Message au signal</label>
+            <input id="chatInput" type="text" placeholder="Écris au signal..." autocomplete="off" />
+            <button type="submit" aria-label="Envoyer">↵</button>
           </form>
-        </div>
-      </div>
+        </aside>
+      </section>
 
-      <aside class="bl-hero-right">
-        <div class="bl-floating-video">
-          <div class="bl-video-head">
-            <span>● NATASHA LIVE ACCESS</span>
-            <span>SIGNAL 96%</span>
-          </div>
+      <section class="intro-copy" aria-label="Présentation de Blacklace Island">
+        <p class="kicker">UNE ÎLE OUBLIÉE QUELQUE PART DANS LE WEB</p>
+        <h1 id="pageTitle">Natasha est en direct.<br>La brume répond.</h1>
+        <p>
+          Blacklace Island n'explique pas tout. Elle ouvre des chemins, laisse passer des voix,
+          puis change légèrement quand personne ne regarde.
+        </p>
+        <button id="enterBtn" class="primary-cta" type="button">Traverser la brume</button>
+      </section>
 
-          <div class="bl-video-frame" id="liveScreen">
-            <video id="localVideo" class="live-media bl-media" autoplay muted loop playsinline></video>
-            <iframe id="youtubeFrame" class="live-media bl-media hidden" src="" title="Blacklace Signal" allow="autoplay; fullscreen" allowfullscreen></iframe>
-            <div class="bl-waiting"><i data-lucide="radio"></i><span>WAITING FOR SIGNAL</span></div>
-            <div class="signal-overlay hidden" id="signalOverlay"><div>SIGNAL LOST</div></div>
-            <div class="bl-video-label" id="screenLabel">ROTAS // SIGNAL PRINCIPAL</div>
-          </div>
-        </div>
+      <section class="portals" id="portals" aria-label="Accès aux lieux de Blacklace Island">
+        <button class="portal active" type="button" data-zone="port">
+          <span class="portal-sigil sigil-target" aria-hidden="true"></span>
+          <strong>Le Port</strong>
+          <p>Arriver par Porsa Rotas.</p>
+        </button>
 
-        <div class="bl-side-status">
-          <span><i data-lucide="sparkles"></i> memory drift</span>
-          <span><i data-lucide="activity"></i> unstable feed</span>
-          <span><i data-lucide="orbit"></i> reboot pending</span>
-        </div>
-      </aside>
-    </section>
+        <button class="portal" type="button" data-zone="max">
+          <span class="portal-sigil sigil-eye" aria-hidden="true"></span>
+          <strong>Max Liberty</strong>
+          <p>Le bar garde les lumières allumées.</p>
+        </button>
 
-    <section class="bl-access">
-      <p class="bl-section-title">ACCÈS DISPONIBLES</p>
-      <div class="bl-card-grid">
-        <button class="bl-node" data-zone="port"><i data-lucide="waves"></i><strong>Le Port</strong><small>Porsa Rotas</small></button>
-        <button class="bl-node" data-zone="max"><i data-lucide="martini"></i><strong>Max Liberty</strong><small>Le bar garde les lumières</small></button>
-        <button class="bl-node" data-zone="sator"><i data-lucide="triangle"></i><strong>Clairière SATOR</strong><small>Marty parle aux pierres</small></button>
-        <button class="bl-node" data-zone="ludmila"><i data-lucide="music-2"></i><strong>Club Ludmila</strong><small>Perception modifiée</small></button>
-        <button class="bl-node" data-zone="institute"><i data-lucide="flask-conical"></i><strong>Feuch Institute</strong><small>Prototypes et artefacts</small></button>
-        <button class="bl-node" data-zone="network"><i data-lucide="radio"></i><strong>Pro.Hibited Network</strong><small>BNN24 / Moscomiul Break</small></button>
-      </div>
-    </section>
+        <button class="portal" type="button" data-zone="sator">
+          <span class="portal-sigil sigil-triangle" aria-hidden="true"></span>
+          <strong>Clairière SATOR</strong>
+          <p>Marty parle aux vieilles pierres.</p>
+        </button>
 
-    <section class="bl-map-access">
-      <a class="bl-map-button" href="map.html"><i data-lucide="map"></i>ENTER THE HOLO MAP</a>
-    </section>
+        <button class="portal" type="button" data-zone="institute">
+          <span class="portal-sigil sigil-hex" aria-hidden="true"></span>
+          <strong>Feuch Institute</strong>
+          <p>Prototypes, inventions et projets en devenir.</p>
+        </button>
+      </section>
 
-    <section class="bl-access bl-artifacts">
-      <p class="bl-section-title">ARTEFACTS CONNECTÉS</p>
-      <div class="bl-card-grid">
-        <a class="bl-node" href="https://blacklace-dice--prohibitedvlc.replit.app" target="_blank" rel="noopener"><i data-lucide="dice-6"></i><strong>Blacklace Dice</strong><small>Missions, hasard et friction mentale.</small></a>
-        <a class="bl-node" href="https://blacklace-relax-system.replit.app" target="_blank" rel="noopener"><i data-lucide="feather"></i><strong>Fée Belette Reboot</strong><small>Relaxation, apaisement et reset doux.</small></a>
-        <a class="bl-node" href="https://www.youtube.com/@prohibitedNetwork" target="_blank" rel="noopener"><i data-lucide="tv"></i><strong>Pro.Hibited Network</strong><small>Signaux vidéo de l’île.</small></a>
-        <a class="bl-node" href="https://www.amazon.fr/Neverland-ltd-nouvelles-aventures-Peter/dp/B0GWHDTG6N" target="_blank" rel="noopener"><i data-lucide="book-open"></i><strong>Neverland Ltd</strong><small>Roman — ouvrir sur Amazon.</small></a>
-        <a class="bl-node" href="https://www.amazon.fr/Feulette-tachet%C3%A9e-Beno%C3%AEt-Lubert/dp/B0GYSSLZX4" target="_blank" rel="noopener"><i data-lucide="leaf"></i><strong>La Feulette Tachetée</strong><small>Roman — ouvrir sur Amazon.</small></a>
-      </div>
+      <section class="archive-strip" aria-label="Archives instables de Blacklace Island">
+        <article>
+          <span class="archive-sigil sigil-eye" aria-hidden="true"></span>
+          <p class="archive-kicker">FRAGMENT // SIGNAL PERDU</p>
+          <h2>Quelque chose répond sous l'île.</h2>
+          <p>
+            Les fréquences remontent par vagues. On entend parfois une voix, mais personne
+            ne sait encore d'où elle vient.
+          </p>
+        </article>
+        <article>
+          <span class="archive-sigil sigil-spark" aria-hidden="true"></span>
+          <p class="archive-kicker">MÉDIAS // SIGNAL</p>
+          <h2>BNN24, Moscomiul Break, Natasha Investigate.</h2>
+          <p>
+            Les émissions ne racontent pas l'île de l'extérieur. Elles sont des accès, des rumeurs
+            et parfois des avertissements.
+          </p>
+        </article>
+      </section>
+
+      <section id="zonePanel" class="zone-panel is-collapsed" aria-live="polite">
+        <button id="closePanel" class="close-panel" type="button" aria-label="Masquer le panneau">×</button>
+        <span class="panel-sigil" id="panelSigil" aria-hidden="true"></span>
+        <p class="panel-kicker" id="panelKicker"></p>
+        <h2 id="panelTitle"></h2>
+        <p id="panelText"></p>
+        <div class="fragment" id="panelFragment"></div>
+      </section>
     </section>
   </main>
 
-  <div class="modal hidden" id="zoneModal">
-    <div class="modal-backdrop" id="modalBackdrop"></div>
-    <div class="modal-panel tilt-card">
-      <button class="modal-close" id="modalClose" aria-label="Fermer">×</button>
-      <p class="modal-kicker" id="modalKicker"></p>
-      <h2 id="modalTitle"></h2>
-      <p class="modal-text" id="modalText"></p>
-      <div class="modal-fragment" id="modalFragment"></div>
-      <div class="modal-actions" id="modalActions"></div>
-    </div>
-  </div>
-
   <script src="script.js"></script>
-  <script>window.addEventListener('DOMContentLoaded',()=>{ if(window.lucide) window.lucide.createIcons(); });</script>
 </body>
 </html>
