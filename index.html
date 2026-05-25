@@ -1,149 +1,19 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blacklace Island — Live Access</title>
+    <meta name="description" content="Une île oubliée quelque part dans le web. Natasha est en direct, la brume répond." />
+    <meta name="author" content="Pro.Hibited Network" />
 
-  <title>Blacklace Island — Live Access</title>
+    <meta property="og:title" content="Blacklace Island — Live Access" />
+    <meta property="og:description" content="Portail transmédia, faux live, IA diffuse, Feuch Institute." />
+    <meta property="og:type" content="website" />
+  </head>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="blacklace-public-fix.css" />
-
-  <script src="https://unpkg.com/lucide@latest"></script>
-</head>
-
-<body class="phase-signal">
-  <div class="bl-bg-grid"></div>
-  <div class="bl-bg-glow"></div>
-  <div class="bl-particles" id="blParticles"></div>
-  <div class="bl-glitch-layer"></div>
-  <div class="noise"></div>
-  <div class="scanlines"></div>
-
-  <main class="bl-home">
-
-    <header class="bl-topbar">
-      <a class="bl-brand" href="index.html">
-        <span class="bl-brand-eye">◉</span>
-        <span>BLACKLACE</span>
-      </a>
-
-      <nav class="bl-nav">
-        <a href="aloisia.html" class="bl-pill bl-pill-active">ALOISIA</a>
-        <button class="bl-pill mode-switcher" data-phase="phase-signal">SIGNAL</button>
-        <button class="bl-pill mode-switcher" data-phase="phase-feuch">FEUCH</button>
-        <button class="bl-pill mode-switcher" data-phase="phase-reboot">REBOOT</button>
-        <span class="bl-pill bl-status" id="phaseLabel">SIGNAL ACTIVE</span>
-      </nav>
-    </header>
-
-    <section class="bl-hero">
-      <div class="bl-hero-copy">
-        <p class="bl-kicker">BLACKLACE ISLAND // LIVE ACCESS</p>
-        <h1>Signal Network</h1>
-        <p class="bl-lead">
-          Une station de diffusion instable entre Natasha, Marty, Feuch et la brume.
-          Les écrans ne montrent pas toujours la même réalité.
-        </p>
-      </div>
-
-      <aside class="bl-floating-video bl-card">
-        <div class="bl-card-head">
-          <span>● NATASHA LIVE ACCESS</span>
-          <span id="signalHealth">SIGNAL 96%</span>
-        </div>
-
-        <div class="bl-video-frame" id="liveScreen">
-          <video id="localVideo" class="bl-media" autoplay muted playsinline loop>
-            <source src="assets/videos/natasha-live.mp4" type="video/mp4">
-          </video>
-
-          <div class="bl-waiting">
-            <i data-lucide="radio"></i>
-            <span>WAITING FOR SIGNAL</span>
-          </div>
-
-          <div class="signal-overlay hidden" id="signalOverlay">
-            <div>SIGNAL LOST</div>
-          </div>
-
-          <div class="bl-video-label" id="screenLabel">ROTAS // SIGNAL PRINCIPAL</div>
-        </div>
-      </aside>
-
-      <section class="bl-signal-console bl-card">
-        <div class="bl-card-head">
-          <span>BRUME ACTIVE</span>
-          <span id="viewerCount">128 viewers</span>
-        </div>
-
-        <div class="bl-log-list" id="chatLog">
-          <div class="bl-log"><strong>SYSTEM</strong><span>Micro-anomalie détectée près de Rotas.</span></div>
-          <div class="bl-log"><strong>MAX</strong><span>Les lumières restent allumées. Pas de panique au comptoir.</span></div>
-          <div class="bl-log"><strong>ALOISIA</strong><span>Je garde ce fragment dans la brume.</span></div>
-          <div class="bl-log"><strong>MARTY</strong><span>Je confirme : la route du port a encore bégayé.</span></div>
-        </div>
-
-        <form class="bl-mini-form" id="blacklaceChatForm">
-          <textarea id="blacklaceChatInput" rows="1" placeholder="Écris au signal..."></textarea>
-          <button type="submit" title="Transmettre"><i data-lucide="send"></i></button>
-        </form>
-      </section>
-    </section>
-
-    <section class="bl-side-status">
-      <span><i data-lucide="sparkles"></i> memory drift</span>
-      <span><i data-lucide="activity"></i> unstable feed</span>
-      <span><i data-lucide="orbit"></i> reboot pending</span>
-    </section>
-
-    <section class="bl-access">
-      <p class="bl-section-title">ACCÈS DISPONIBLES</p>
-
-      <div class="bl-card-grid">
-        <button class="bl-node" data-zone="port"><i data-lucide="waves"></i><strong>Le Port</strong><small>Porsa Rotas</small></button>
-        <button class="bl-node" data-zone="max"><i data-lucide="martini"></i><strong>Max Liberty</strong><small>Le bar garde les lumières</small></button>
-        <button class="bl-node" data-zone="sator"><i data-lucide="triangle"></i><strong>Clairière SATOR</strong><small>Marty parle aux pierres</small></button>
-        <button class="bl-node" data-zone="ludmila"><i data-lucide="music-2"></i><strong>Club Ludmila</strong><small>Perception modifiée</small></button>
-        <button class="bl-node" data-zone="institute"><i data-lucide="flask-conical"></i><strong>Feuch Institute</strong><small>Prototypes et artefacts</small></button>
-        <button class="bl-node" data-zone="network"><i data-lucide="radio"></i><strong>Pro.Hibited Network</strong><small>BNN24 / Moscomiul Break</small></button>
-      </div>
-    </section>
-
-    <section class="bl-map-access">
-      <a class="bl-map-button" href="map.html"><i data-lucide="map"></i> ENTER THE HOLO MAP</a>
-    </section>
-
-    <section class="bl-access bl-artifacts">
-      <p class="bl-section-title">ARTEFACTS CONNECTÉS</p>
-
-      <div class="bl-card-grid">
-        <a class="bl-node" href="https://blacklace-dice--prohibitedvlc.replit.app" target="_blank" rel="noopener"><i data-lucide="dice-6"></i><strong>Blacklace Dice</strong><small>Missions, hasard et friction mentale.</small></a>
-        <a class="bl-node" href="https://blacklace-relax-system.replit.app" target="_blank" rel="noopener"><i data-lucide="feather"></i><strong>Fée Belette Reboot</strong><small>Relaxation, apaisement et reset doux.</small></a>
-        <a class="bl-node" href="https://www.youtube.com/@prohibitedNetwork" target="_blank" rel="noopener"><i data-lucide="tv"></i><strong>Pro.Hibited Network</strong><small>Signaux vidéo de l’île.</small></a>
-        <a class="bl-node" href="https://www.amazon.fr/Neverland-ltd-nouvelles-aventures-Peter/dp/B0GWHDTG6N" target="_blank" rel="noopener"><i data-lucide="book-open"></i><strong>Neverland Ltd</strong><small>Roman — ouvrir sur Amazon.</small></a>
-        <a class="bl-node" href="https://www.amazon.fr/Feulette-tachet%C3%A9e-Beno%C3%AEt-Lubert/dp/B0GYSSLZX4" target="_blank" rel="noopener"><i data-lucide="leaf"></i><strong>La Feulette Tachetée</strong><small>Roman — ouvrir sur Amazon.</small></a>
-      </div>
-    </section>
-
-  </main>
-
-  <div class="modal hidden" id="zoneModal">
-    <div class="modal-backdrop" id="modalBackdrop"></div>
-    <div class="modal-panel bl-modal-panel">
-      <button class="modal-close" id="modalClose" aria-label="Fermer">×</button>
-      <p class="modal-kicker" id="modalKicker"></p>
-      <h2 id="modalTitle"></h2>
-      <p class="modal-text" id="modalText"></p>
-      <div class="modal-fragment" id="modalFragment"></div>
-      <div class="modal-actions" id="modalActions"></div>
-    </div>
-  </div>
-
-  <script src="blacklace-public-fix.js"></script>
-</body>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
